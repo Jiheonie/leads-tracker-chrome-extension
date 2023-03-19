@@ -1,18 +1,20 @@
 // Lesson 1,2,3,4,5,6,7,8,9,10,
 // 11,12,13,14,15,16,17,18,19,20,
-// 21,22,23,24,25,26,27,28,29
+// 21,22,23,24,25,26,27,28,29,30
+// 31,32,33,34,35,36,37
 
 let myLeads = [];
+
 const inputEl = document.querySelector(".input-el");
 const inputBtn = document.querySelector(".input-btn");
 const ulEl = document.querySelector(".ul-el");
-const result = document.querySelector(".result");
 
 inputBtn.addEventListener("click", function () {
+  myLeads = JSON.parse(localStorage.getItem("myLeads")); // parse to array
   if (inputEl.value != "") myLeads.push(inputEl.value);
-  renderLeads();
-  result.innerHTML = "Saved!";
-  inputEl.value = "";
+  renderLeads(); // render leads to screen 
+  localStorage.setItem("myLeads", JSON.stringify(myLeads)); // store leads to local storage 
+  inputEl.value = ""; // clear input field after saving lead
 });
 
 function renderLeads() {
@@ -31,12 +33,3 @@ function renderLeads() {
   // improving performance
   ulEl.innerHTML = listItems;
 }
-
-// Adding a button using js
-// const body = document.querySelector("body");
-// body.innerHTML += `<button class="buy-btn">Buy!</button>`;
-
-// const buyBtn = document.querySelector(".buy-btn");
-// buyBtn.addEventListener("click", function () {
-//   body.innerHTML += `<p>Thank you for buying!</p>`;
-// });
