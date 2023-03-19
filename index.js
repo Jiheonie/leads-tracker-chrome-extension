@@ -10,7 +10,6 @@ const deleteBtn = document.querySelector(".delete-btn");
 const ulEl = document.querySelector(".ul-el");
 
 function render(leads) {
-  // render leads to screen
   let listItems = ``;
   for (let i = 0; i < leads.length; i++) {
     listItems += `
@@ -18,32 +17,33 @@ function render(leads) {
       <a href="${leads[i]}" target="_blank"> 
         ${leads[i]}
       </a>
-    </li>`; // not single quote
+    </li>`; //not single quote
     //using backtick character
   }
-  // Instead of using innerHTML 3 times inside for loop
-  // just need to use innerHTML 1 times outside for loop
-  // improving performance
+  //Instead of using innerHTML 3 times inside for loop
+  //just need to use innerHTML 1 times outside for loop
+  //improving performance
   ulEl.innerHTML = listItems;
-}
+} //render leads to screen
 
 let myLeads = [];
-myLeads = JSON.parse(localStorage.getItem("myLeads")); // parse to array
-render(myLeads);
+if (localStorage.getItem("myLeads")) {
+  myLeads = JSON.parse(localStorage.getItem("myLeads")); //parse to array
+  render(myLeads);
+}
 
-inputBtn.addEventListener("click", function () {
+inputBtn.addEventListener("click", () => {
   if (inputEl.value) {
-    // check if input value is truthy value then push
+    //check if input value is truthy value then push
     myLeads.push(inputEl.value);
     render(myLeads);
   }
-  localStorage.setItem("myLeads", JSON.stringify(myLeads)); // store leads to local storage
-  inputEl.value = ""; // clear input field after saving lead
+  localStorage.setItem("myLeads", JSON.stringify(myLeads)); //store leads to local storage
+  inputEl.value = ""; //clear input field after saving lead
 });
 
-deleteBtn.addEventListener("dblclick", function () {
-  localStorage.clear();
-  myLeads = [];
+deleteBtn.addEventListener("dblclick", () => {
+  localStorage.clear(); //clear local storage
+  myLeads = []; //clear Leads list
   render(myLeads);
 });
-
