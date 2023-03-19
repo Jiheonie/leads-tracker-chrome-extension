@@ -2,10 +2,11 @@
 // 11,12,13,14,15,16,17,18,19,20,
 // 21,22,23,24,25,26,27,28,29,30
 // 31,32,33,34,35,36,37,38,39,40
-// 41,42,43
+// 41,42,43,44,45,46
 
 const inputEl = document.querySelector(".input-el");
 const inputBtn = document.querySelector(".input-btn");
+const tabBtn = document.querySelector(".tab-btn");
 const deleteBtn = document.querySelector(".delete-btn");
 const ulEl = document.querySelector(".ul-el");
 
@@ -40,6 +41,18 @@ inputBtn.addEventListener("click", () => {
   }
   localStorage.setItem("myLeads", JSON.stringify(myLeads)); //store leads to local storage
   inputEl.value = ""; //clear input field after saving lead
+});
+
+tabBtn.addEventListener("click", () => {
+  //chrome: running chrome extension
+  //tabs: object
+  //query: method
+  chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
+    console.log(tabs[0].url);
+    // myLeads.push(tabs[0].url);
+    // render(myLeads);
+    // localStorage.setItem("myLeads", JSON.stringify(myLeads)); //store leads to local storage
+  });
 });
 
 deleteBtn.addEventListener("dblclick", () => {
