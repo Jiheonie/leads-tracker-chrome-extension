@@ -5,6 +5,7 @@
 
 const inputEl = document.querySelector(".input-el");
 const inputBtn = document.querySelector(".input-btn");
+const deleteBtn = document.querySelector(".delete-btn");
 const ulEl = document.querySelector(".ul-el");
 
 let myLeads = [];
@@ -12,12 +13,19 @@ myLeads = JSON.parse(localStorage.getItem("myLeads")); // parse to array
 renderLeads();
 
 inputBtn.addEventListener("click", function () {
-  if (inputEl.value) { // check if input value is truthy value then push
+  if (inputEl.value) {
+    // check if input value is truthy value then push
     myLeads.push(inputEl.value);
-    renderLeads(); 
-  } 
+    renderLeads();
+  }
   localStorage.setItem("myLeads", JSON.stringify(myLeads)); // store leads to local storage
   inputEl.value = ""; // clear input field after saving lead
+});
+
+deleteBtn.addEventListener("dblclick", function () {
+  localStorage.clear();
+  myLeads = [];
+  renderLeads();
 });
 
 function renderLeads() {
