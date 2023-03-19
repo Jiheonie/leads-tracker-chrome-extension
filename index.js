@@ -48,10 +48,9 @@ tabBtn.addEventListener("click", () => {
   //tabs: object
   //query: method
   chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
-    console.log(tabs[0].url);
-    // myLeads.push(tabs[0].url);
-    // render(myLeads);
-    // localStorage.setItem("myLeads", JSON.stringify(myLeads)); //store leads to local storage
+    myLeads.push(tabs[0].url);
+    render(myLeads);
+    localStorage.setItem("myLeads", JSON.stringify(myLeads)); //store leads to local storage
   });
 });
 
